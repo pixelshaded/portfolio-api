@@ -3,6 +3,26 @@ module.exports = function(server, Resource) {
       return type.key == 'TEXT' || type.key == 'STRING';
     }
     
+    function addLinksToResource(resource, req) {
+      var ids = [];
+      for(var property in resource) {
+        if (resource[property] === null){
+          continue;
+        }
+        var idIndex = property.indexOf('_id');
+        if (idIndex != -1){
+          var targetResource = property.split('_id')[0];
+          if (!resource.links) {
+            resource.links = [];
+          }
+          resource.links.push({
+            rel: targetResource,
+            href: 'http://' + req.header('host') + '/' + targetResource + '/' + resource[property]
+          });
+        }
+      }
+    }
+    
     server.get(Resource.name, function(req, res, next) {
       var where = {};
       
@@ -20,6 +40,10 @@ module.exports = function(server, Resource) {
       
       if (where != {}){
         Resource.findAll({ where: where }).then(function(resources) {
+          for(var i = 0; i < resources.length; i++){
+            resources[i] = resources[i].get({ plain: true});
+            addLinksToResource(resources[i], req);
+          }
           res.send(resources);
           next();
         }, function(reason) {
@@ -30,6 +54,10 @@ module.exports = function(server, Resource) {
       }
       
       Resource.findAll().then(function(resources) {
+        for(var i = 0; i < resources.length; i++){
+          resources[i] = resources[i].get({ plain: true});
+          addLinksToResource(resources[i], req);
+        }
         res.send(resources);
         next();
       }, function(reason) {
@@ -40,6 +68,8 @@ module.exports = function(server, Resource) {
     
     server.get(Resource.name + '/:id', function(req, res, next) {
       Resource.findById(req.params.id).then(function(resource) {
+        resource = resource.get({ plain: true});
+        addLinksToResource(resource, req);
         res.send(resource);
         next();
       }, function(reason) {

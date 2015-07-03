@@ -23,7 +23,7 @@ var resources = ['Project', 'Gallery', 'Category', 'Image'];
 
 for(var i = 0; i < resources.length; i++){
     var Resource = require('./src/models/' + resources[i])(sequelize, Sequelize);
-    resourceFactory(server, Resource);
+    resourceFactory(server, Resource, host, port);
 }
 
 server.listen(port, host, function () {
