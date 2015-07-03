@@ -6,14 +6,14 @@ module.exports = function(server, Resource) {
     server.get(Resource.name, function(req, res, next) {
       var where = {};
       
-      for(var param in req.params) {
+      for(var param in req.query) {
         if (Resource.attributes[param]) {
           if (isStringType(Resource.attributes[param].type)) {
             where[param] = {
-                $like: '%' + req.params[param] + '%'
+                $like: '%' + req.query[param] + '%'
             };
           } else {
-            where[param] = req.params[param];
+            where[param] = req.query[param];
           }
         }
       }
