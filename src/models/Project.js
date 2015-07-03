@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-    var Project = sequelize.define('project', {
+    return sequelize.define('project', {
         id: Sequelize.INTEGER(11),
         category_id: Sequelize.INTEGER(11),
         gallery_id: Sequelize.INTEGER(11),
@@ -11,6 +11,4 @@ module.exports = function(sequelize, Sequelize) {
         content: Sequelize.TEXT,
         subcontent: Sequelize.TEXT
     });
-    
-    return Project;
 }

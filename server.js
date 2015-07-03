@@ -18,8 +18,13 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
-var Project = require('./src/models/Project')(sequelize, Sequelize);
-require('./src/resources/Project')(server, Project);
+var resourceFactory = require('./src/ResourceFactory');
+var resources = ['Project', 'Gallery', 'Category', 'Image'];
+
+for(var i = 0; i < resources.length; i++){
+    var Resource = require('./src/models/' + resources[i])(sequelize, Sequelize);
+    resourceFactory(server, Resource);
+}
 
 server.listen(port, host, function () {
     console.log('%s listening at %s', server.name, server.url);
