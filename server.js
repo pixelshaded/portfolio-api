@@ -22,7 +22,7 @@ var resourceFactory = require('./src/ResourceFactory');
 var resources = ['Project', 'Gallery', 'Category', 'Image'];
 
 for(var i = 0; i < resources.length; i++){
-    var Resource = require('./src/models/' + resources[i])(sequelize, Sequelize);
+    var Resource = require('./src/models/' + resources[i]).mysql(sequelize, Sequelize);
     resourceFactory(server, Resource, host, port);
 }
 

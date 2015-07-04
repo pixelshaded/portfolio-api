@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/pixelshaded/portfolio-api#readme",
   "dependencies": {
+    "mongodb": "^2.0.35",
+    "mongoose": "^4.0.6",
     "mysql": "^2.7.0",
     "restify": "^3.0.3",
     "sequelize": "^3.3.2"
