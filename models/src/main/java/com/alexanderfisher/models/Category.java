@@ -24,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Category
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:17:13.645621-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:23:41.118820-04:00[America/New_York]")
 public class Category {
   @JsonProperty("id")
-  private Double id;
+  private Integer id;
 
   @JsonProperty("slug")
   private String slug;
@@ -41,7 +41,7 @@ public class Category {
   @JsonProperty("description")
   private String description;
 
-  public Category id(Double id) {
+  public Category id(Integer id) {
     this.id = id;
     return this;
   }
@@ -51,11 +51,11 @@ public class Category {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public Double getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Double id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

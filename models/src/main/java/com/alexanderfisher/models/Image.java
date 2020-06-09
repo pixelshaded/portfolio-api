@@ -24,13 +24,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Image
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:17:13.645621-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:23:41.118820-04:00[America/New_York]")
 public class Image {
   @JsonProperty("id")
-  private Double id;
+  private Integer id;
 
   @JsonProperty("galleryId")
-  private Double galleryId;
+  private Integer galleryId;
 
   @JsonProperty("filename")
   private String filename;
@@ -38,7 +38,7 @@ public class Image {
   @JsonProperty("alt")
   private String alt;
 
-  public Image id(Double id) {
+  public Image id(Integer id) {
     this.id = id;
     return this;
   }
@@ -48,15 +48,15 @@ public class Image {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public Double getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Double id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public Image galleryId(Double galleryId) {
+  public Image galleryId(Integer galleryId) {
     this.galleryId = galleryId;
     return this;
   }
@@ -66,11 +66,11 @@ public class Image {
    * @return galleryId
   **/
   @ApiModelProperty(value = "")
-  public Double getGalleryId() {
+  public Integer getGalleryId() {
     return galleryId;
   }
 
-  public void setGalleryId(Double galleryId) {
+  public void setGalleryId(Integer galleryId) {
     this.galleryId = galleryId;
   }
 

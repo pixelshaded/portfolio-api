@@ -24,13 +24,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Gallery
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:17:13.645621-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:23:41.118820-04:00[America/New_York]")
 public class Gallery {
   @JsonProperty("id")
-  private Double id;
+  private Integer id;
 
   @JsonProperty("coverId")
-  private Double coverId;
+  private Integer coverId;
 
   @JsonProperty("title")
   private String title;
@@ -38,7 +38,7 @@ public class Gallery {
   @JsonProperty("slug")
   private String slug;
 
-  public Gallery id(Double id) {
+  public Gallery id(Integer id) {
     this.id = id;
     return this;
   }
@@ -48,15 +48,15 @@ public class Gallery {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public Double getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Double id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public Gallery coverId(Double coverId) {
+  public Gallery coverId(Integer coverId) {
     this.coverId = coverId;
     return this;
   }
@@ -66,11 +66,11 @@ public class Gallery {
    * @return coverId
   **/
   @ApiModelProperty(value = "")
-  public Double getCoverId() {
+  public Integer getCoverId() {
     return coverId;
   }
 
-  public void setCoverId(Double coverId) {
+  public void setCoverId(Integer coverId) {
     this.coverId = coverId;
   }
 

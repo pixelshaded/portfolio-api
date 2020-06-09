@@ -24,13 +24,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Project
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:17:13.645621-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:23:41.118820-04:00[America/New_York]")
 public class Project {
   @JsonProperty("id")
-  private Double id;
+  private Integer id;
 
   @JsonProperty("categoryId")
-  private Double categoryId;
+  private Integer categoryId;
 
   @JsonProperty("title")
   private String title;
@@ -53,7 +53,7 @@ public class Project {
   @JsonProperty("subcontent")
   private String subcontent;
 
-  public Project id(Double id) {
+  public Project id(Integer id) {
     this.id = id;
     return this;
   }
@@ -63,15 +63,15 @@ public class Project {
    * @return id
   **/
   @ApiModelProperty(value = "")
-  public Double getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Double id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public Project categoryId(Double categoryId) {
+  public Project categoryId(Integer categoryId) {
     this.categoryId = categoryId;
     return this;
   }
@@ -81,11 +81,11 @@ public class Project {
    * @return categoryId
   **/
   @ApiModelProperty(value = "")
-  public Double getCategoryId() {
+  public Integer getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(Double categoryId) {
+  public void setCategoryId(Integer categoryId) {
     this.categoryId = categoryId;
   }
 
