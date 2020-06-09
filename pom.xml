@@ -10,4 +10,11 @@
     <module>models</module>
     <module>spring-boot</module>
   </modules>
+  <properties>
+    <maven.compiler.source>7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.remote.resources.plugin.version>1.7.0</maven.remote.resources.plugin.version>
+    <openapi.generator.maven.plugin.version>3.3.4</openapi.generator.maven.plugin.version>
+    <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
+  </properties>
 </project>

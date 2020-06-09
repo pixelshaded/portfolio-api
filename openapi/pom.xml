@@ -8,4 +8,24 @@
     <artifactId>portfolio-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <version>${maven.remote.resources.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>bundle</goal>
+            </goals>
+            <configuration>
+              <includes>
+                <include>*.yml</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
