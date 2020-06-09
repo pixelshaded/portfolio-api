@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * ProjectGallery
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T14:23:41.118820-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-09T16:13:04.550828-04:00[America/New_York]")
 public class ProjectGallery {
   @JsonProperty("gallery")
   private Gallery gallery = null;
