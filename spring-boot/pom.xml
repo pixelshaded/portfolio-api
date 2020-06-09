@@ -8,4 +8,75 @@
     <artifactId>portfolio-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  <dependencies>
+    <dependency>
+      <groupId>com.alexanderfisher</groupId>
+      <artifactId>models</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <version>${maven.remote.resources.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>process-remote-resources</id>
+            <!-- default phase is process-resources which happens after generate-sources -->
+            <phase>initialize</phase>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <configuration>
+              <resourceBundles>
+                <resourceBundle>com.alexanderfisher:openapi:${project.version}</resourceBundle>
+              </resourceBundles>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>${maven.clean.plugin.version}</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>src/main/java/com/alexanderfisher/service</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi.generator.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.build.directory}/maven-shared-archive-resources/openapi.yml</inputSpec>
+              <generatorName>spring</generatorName>
+              <apiPackage>com.alexanderfisher.service</apiPackage>
+              <modelPackage>com.alexanderfisher.models</modelPackage>
+              <invokerPackage>com.alexanderfisher.invoker</invokerPackage>
+              <generateApis>true</generateApis>
+              <generateApiDocumentation>false</generateApiDocumentation>
+              <generateModels>false</generateModels>
+              <generateSupportingFiles>true</generateSupportingFiles>
+              <output>${project.basedir}</output>
+              <strictSpec>true</strictSpec>
+              <supportingFilesToGenerate></supportingFilesToGenerate>
+              <configOptions>
+                <dateLibraryt>java8</dateLibraryt >
+                <library>spring-boot</library>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
