@@ -1,0 +1,31 @@
+{
+  "name": "portfolio-api",
+  "version": "1.0.0",
+  "description": "Rest API for portfolio site.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelshaded/portfolio-api.git"
+  },
+  "keywords": [
+    "restify",
+    "rest",
+    "api"
+  ],
+  "author": "Alexander Fisher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pixelshaded/portfolio-api/issues"
+  },
+  "homepage": "https://github.com/pixelshaded/portfolio-api#readme",
+  "dependencies": {
+    "mongodb": "^2.0.35",
+    "mongoose": "^4.0.6",
+    "mysql": "^2.7.0",
+    "restify": "^3.0.3",
+    "sequelize": "^3.3.2"
+  }
+}
