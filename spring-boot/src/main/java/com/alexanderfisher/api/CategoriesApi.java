@@ -8,8 +8,6 @@ package com.alexanderfisher.api;
 import com.alexanderfisher.models.Category;
 import com.alexanderfisher.models.Project;
 import io.swagger.annotations.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,22 +17,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-06-09T16:13:05.166664-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-06-10T14:42:01.209035-04:00[America/New_York]")
 
 @Validated
 @Api(value = "categories", description = "the categories API")
 public interface CategoriesApi {
 
-    default Optional<NativeWebRequest> getRequest() {
-        return Optional.empty();
+    default CategoriesApiDelegate getDelegate() {
+        return new CategoriesApiDelegate() {};
     }
 
     @ApiOperation(value = "", nickname = "categoriesCategoryIdProjectsGet", notes = "Returns projects for a given category", response = Project.class, responseContainer = "List", tags={  })
@@ -44,16 +40,7 @@ public interface CategoriesApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(@ApiParam(value = "",required=true) @PathVariable("categoryId") Integer categoryId) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"intro\" : \"intro\",  \"subcontent\" : \"subcontent\",  \"tagline\" : \"tagline\",  \"id\" : 0,  \"title\" : \"title\",  \"categoryId\" : 6,  \"slug\" : \"slug\",  \"content\" : \"content\"}");
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+        return getDelegate().categoriesCategoryIdProjectsGet(categoryId);
     }
 
 
@@ -64,16 +51,7 @@ public interface CategoriesApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<List<Category>> categoriesGet() {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"slug\" : \"slug\"}");
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+        return getDelegate().categoriesGet();
     }
 
 }
