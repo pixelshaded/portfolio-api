@@ -8,6 +8,8 @@
   <modules>
     <module>openapi</module>
     <module>models</module>
+    <module>database</module>
+    <module>hibernate</module>
     <module>spring-boot</module>
   </modules>
   <properties>
