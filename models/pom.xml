@@ -20,11 +20,6 @@
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson.annotations.version}</version>
     </dependency>
-    <dependency>
-      <groupId>javax.annotation</groupId>
-      <artifactId>javax.annotation-api</artifactId>
-      <version>${javax.annotation.api.version}</version>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -76,10 +71,10 @@
               <generateModelDocumentation>false</generateModelDocumentation>
               <generateSupportingFiles>false</generateSupportingFiles>
               <output>${project.basedir}</output>
-              <strictSpec>true</strictSpec>
               <configOptions>
                 <dateLibrary>java8</dateLibrary>
                 <library>webclient</library>
+                <hideGenerationTimestamp>true</hideGenerationTimestamp>
               </configOptions>
             </configuration>
           </execution>

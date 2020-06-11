@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * Category
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-06-10T14:41:18.617676-04:00[America/New_York]")
+
 public class Category {
   @JsonProperty("id")
   private Integer id;

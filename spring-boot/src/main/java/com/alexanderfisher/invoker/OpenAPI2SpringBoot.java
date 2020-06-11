@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.alexanderfisher.invoker", "com.alexanderfisher.api" , "org.openapitools.configuration"})
+@ComponentScan(basePackages = {"com.alexanderfisher.invoker", "com.alexanderfisher.api", "com.alexanderfisher.impl"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override

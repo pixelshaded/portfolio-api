@@ -17,7 +17,6 @@ import java.util.Optional;
  * A delegate to be called by the {@link CategoriesApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-06-10T14:42:01.209035-04:00[America/New_York]")
 
 public interface CategoriesApiDelegate {
 
