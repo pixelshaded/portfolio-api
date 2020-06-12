@@ -29,7 +29,7 @@ public class Images  implements java.io.Serializable {
      private Galleries galleries;
      private String filename;
      private String alt;
-     private Set gallerieses = new HashSet(0);
+     private Set<Galleries> gallerieses = new HashSet<Galleries>(0);
 
     public Images() {
     }
@@ -39,7 +39,7 @@ public class Images  implements java.io.Serializable {
         this.filename = filename;
         this.alt = alt;
     }
-    public Images(Galleries galleries, String filename, String alt, Set gallerieses) {
+    public Images(Galleries galleries, String filename, String alt, Set<Galleries> gallerieses) {
        this.galleries = galleries;
        this.filename = filename;
        this.alt = alt;
@@ -89,11 +89,11 @@ public class Images  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="images")
-    public Set getGallerieses() {
+    public Set<Galleries> getGallerieses() {
         return this.gallerieses;
     }
     
-    public void setGallerieses(Set gallerieses) {
+    public void setGallerieses(Set<Galleries> gallerieses) {
         this.gallerieses = gallerieses;
     }
 

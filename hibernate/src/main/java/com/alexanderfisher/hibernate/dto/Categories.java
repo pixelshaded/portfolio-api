@@ -30,7 +30,7 @@ public class Categories  implements java.io.Serializable {
      private String title;
      private String subtitle;
      private String description;
-     private Set projectses = new HashSet(0);
+     private Set<Projects> projectses = new HashSet<Projects>(0);
 
     public Categories() {
     }
@@ -42,7 +42,7 @@ public class Categories  implements java.io.Serializable {
         this.subtitle = subtitle;
         this.description = description;
     }
-    public Categories(String slug, String title, String subtitle, String description, Set projectses) {
+    public Categories(String slug, String title, String subtitle, String description, Set<Projects> projectses) {
        this.slug = slug;
        this.title = title;
        this.subtitle = subtitle;
@@ -103,11 +103,11 @@ public class Categories  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="categories")
-    public Set getProjectses() {
+    public Set<Projects> getProjectses() {
         return this.projectses;
     }
     
-    public void setProjectses(Set projectses) {
+    public void setProjectses(Set<Projects> projectses) {
         this.projectses = projectses;
     }
 

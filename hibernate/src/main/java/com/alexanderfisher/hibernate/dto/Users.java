@@ -33,7 +33,7 @@ public class Users  implements java.io.Serializable {
      private String password;
      private String email;
      private boolean isActive;
-     private Set roleses = new HashSet(0);
+     private Set<Roles> roleses = new HashSet<Roles>(0);
 
     public Users() {
     }
@@ -46,7 +46,7 @@ public class Users  implements java.io.Serializable {
         this.email = email;
         this.isActive = isActive;
     }
-    public Users(String username, String salt, String password, String email, boolean isActive, Set roleses) {
+    public Users(String username, String salt, String password, String email, boolean isActive, Set<Roles> roleses) {
        this.username = username;
        this.salt = salt;
        this.password = password;
@@ -121,11 +121,11 @@ public class Users  implements java.io.Serializable {
     @JoinTable(name="user_role", catalog="portfolio", joinColumns = { 
         @JoinColumn(name="user_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="role_id", nullable=false, updatable=false) })
-    public Set getRoleses() {
+    public Set<Roles> getRoleses() {
         return this.roleses;
     }
     
-    public void setRoleses(Set roleses) {
+    public void setRoleses(Set<Roles> roleses) {
         this.roleses = roleses;
     }
 

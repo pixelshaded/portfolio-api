@@ -8,5 +8,7 @@
     <property name="connection.password">portfolio</property>
     <mapping class="com.alexanderfisher.hibernate.dto.Categories"/>
     <mapping class="com.alexanderfisher.hibernate.dto.Projects"/>
+    <mapping class="com.alexanderfisher.hibernate.dto.Galleries"/>
+    <mapping class="com.alexanderfisher.hibernate.dto.Images"/>
   </session-factory>
 </hibernate-configuration>

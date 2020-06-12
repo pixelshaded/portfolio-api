@@ -37,6 +37,7 @@
             </goals>
             <configuration>
               <ejb3>true</ejb3>
+              <jdk5>true</jdk5>
               <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
               <packageName>com.alexanderfisher.hibernate.dto</packageName>
               <templatePath>${project.basedir}/src/main/hibernate/templates</templatePath>

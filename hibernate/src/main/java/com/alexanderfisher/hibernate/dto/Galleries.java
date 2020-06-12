@@ -31,8 +31,8 @@ public class Galleries  implements java.io.Serializable {
      private Images images;
      private String title;
      private String slug;
-     private Set projectses = new HashSet(0);
-     private Set imageses = new HashSet(0);
+     private Set<Projects> projectses = new HashSet<Projects>(0);
+     private Set<Images> imageses = new HashSet<Images>(0);
 
     public Galleries() {
     }
@@ -42,7 +42,7 @@ public class Galleries  implements java.io.Serializable {
         this.title = title;
         this.slug = slug;
     }
-    public Galleries(Images images, String title, String slug, Set projectses, Set imageses) {
+    public Galleries(Images images, String title, String slug, Set<Projects> projectses, Set<Images> imageses) {
        this.images = images;
        this.title = title;
        this.slug = slug;
@@ -93,20 +93,20 @@ public class Galleries  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="galleries")
-    public Set getProjectses() {
+    public Set<Projects> getProjectses() {
         return this.projectses;
     }
     
-    public void setProjectses(Set projectses) {
+    public void setProjectses(Set<Projects> projectses) {
         this.projectses = projectses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="galleries")
-    public Set getImageses() {
+    public Set<Images> getImageses() {
         return this.imageses;
     }
     
-    public void setImageses(Set imageses) {
+    public void setImageses(Set<Images> imageses) {
         this.imageses = imageses;
     }
 
