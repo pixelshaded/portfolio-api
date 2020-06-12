@@ -15,6 +15,11 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <version>${spring.boot.version}</version>
@@ -33,6 +38,16 @@
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>${javax.validation.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alexanderfisher</groupId>
+      <artifactId>hibernate</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.connector.java.version}</version>
     </dependency>
   </dependencies>
   <build>
