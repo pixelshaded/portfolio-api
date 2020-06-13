@@ -1,4 +1,4 @@
-package com.alexanderfisher.hbm2java;
+package com.alexanderfisher.hibernate.hbm2java;
 
 import org.hibernate.cfg.reveng.DefaultReverseEngineeringStrategy;
 import org.hibernate.cfg.reveng.TableIdentifier;

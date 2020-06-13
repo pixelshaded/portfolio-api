@@ -57,7 +57,7 @@
               <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
               <packageName>com.alexanderfisher.hibernate.entities</packageName>
               <templatePath>${project.basedir}/src/main/hibernate/templates</templatePath>
-              <revengStrategy>com.alexanderfisher.hbm2java.CustomReverseEngineeringStrategy</revengStrategy>
+              <revengStrategy>com.alexanderfisher.hibernate.hbm2java.CustomReverseEngineeringStrategy</revengStrategy>
             </configuration>
           </execution>
         </executions>
