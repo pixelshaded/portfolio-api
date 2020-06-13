@@ -1,9 +1,13 @@
 package com.alexanderfisher.portfolio.api.springboot.service.impl;
 
+import com.alexanderfisher.portfolio.api.hibernate.entities.ProjectsEntity;
+import com.alexanderfisher.portfolio.api.hibernate.entities.ProjectsEntity_;
 import com.alexanderfisher.portfolio.api.springboot.api.CategoriesApiDelegate;
 import com.alexanderfisher.portfolio.api.hibernate.entities.CategoriesEntity;
+import com.alexanderfisher.portfolio.api.hibernate.entities.CategoriesEntity_;
 import com.alexanderfisher.portfolio.api.models.Category;
 import com.alexanderfisher.portfolio.api.models.Project;
+import com.alexanderfisher.portfolio.api.springboot.service.EntityToModelConverter;
 import com.alexanderfisher.portfolio.api.springboot.service.SessionFactoryProvider;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,17 +33,21 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
 
     @Override
     public ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(Integer categoryId) {
-        Project project = new Project();
-        project.setId(1);
-        project.setCategoryId(categoryId);
-        project.setTitle("An example project");
-        project.setSlug("an-example-project");
-        project.setSubtitle("Examples for testing.");
-        project.setIntro("Welcome to the example.");
-        project.setTagline("I can has example?");
-        project.setContent("<div>some content html dawg</div>");
-        project.setSubcontent("<div>some sub content html dawg</div>");
-        return new ResponseEntity<>(Arrays.asList(project), HttpStatus.OK);
+        Session session = sessionFactoryProvider.getSessionFactory().openSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<ProjectsEntity> criteriaQuery = criteriaBuilder.createQuery(ProjectsEntity.class);
+        Root<ProjectsEntity> root = criteriaQuery.from(ProjectsEntity.class);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get(ProjectsEntity_.categoriesEntity), categoryId));
+        Transaction transaction = session.beginTransaction();
+        List<ProjectsEntity> projectsEntities = session.createQuery(criteriaQuery).getResultList();
+        transaction.commit();
+        session.close();
+
+        List<Project> categories = projectsEntities.stream()
+                .map(EntityToModelConverter::toProject)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @Override
@@ -52,15 +61,9 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
         transaction.commit();
         session.close();
 
-        List<Category> categories = categoriesEntities.stream().map(dto -> {
-            Category category = new Category();
-            category.setId(dto.getId());
-            category.setTitle(dto.getTitle());
-            category.setSlug(dto.getSlug());
-            category.setSubtitle(dto.getSubtitle());
-            category.setDescription(dto.getDescription());
-            return category;
-        }).collect(Collectors.toList());
+        List<Category> categories = categoriesEntities.stream()
+            .map(EntityToModelConverter::toCategory)
+            .collect(Collectors.toList());
 
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
