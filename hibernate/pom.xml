@@ -23,7 +23,7 @@
         <configuration>
           <filesets>
             <fileset>
-              <directory>src/main/java/com/alexanderfisher/hibernate</directory>
+              <directory>src/main/java/com/alexanderfisher</directory>
             </fileset>
           </filesets>
         </configuration>
@@ -55,9 +55,9 @@
               <ejb3>true</ejb3>
               <jdk5>true</jdk5>
               <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-              <packageName>com.alexanderfisher.hibernate.entities</packageName>
+              <packageName>${hbm2java.packageName}</packageName>
               <templatePath>${project.basedir}/src/main/hibernate/templates</templatePath>
-              <revengStrategy>com.alexanderfisher.hibernate.hbm2java.CustomReverseEngineeringStrategy</revengStrategy>
+              <revengStrategy>com.alexanderfisher.portfolio.api.hibernate.hbm2java.CustomReverseEngineeringStrategy</revengStrategy>
             </configuration>
           </execution>
         </executions>

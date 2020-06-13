@@ -82,7 +82,7 @@
         <configuration>
           <filesets>
             <fileset>
-              <directory>src/main/java/com/alexanderfisher/api</directory>
+              <directory>src/main/java/com/alexanderfisher/portfolio/api/api</directory>
             </fileset>
           </filesets>
         </configuration>
@@ -99,9 +99,9 @@
             <configuration>
               <inputSpec>${project.build.directory}/maven-shared-archive-resources/openapi.yml</inputSpec>
               <generatorName>spring</generatorName>
-              <apiPackage>com.alexanderfisher.api</apiPackage>
-              <modelPackage>com.alexanderfisher.models</modelPackage>
-              <invokerPackage>com.alexanderfisher.invoker</invokerPackage>
+              <apiPackage>${openapi.generator.apiPackage}</apiPackage>
+              <modelPackage>${openapi.generator.modelPackage}</modelPackage>
+              <invokerPackage>${openapi.generator.invokerPackage}</invokerPackage>
               <generateApis>true</generateApis>
               <generateApiDocumentation>false</generateApiDocumentation>
               <generateModels>false</generateModels>

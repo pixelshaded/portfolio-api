@@ -6,9 +6,9 @@
     <property name="connection.url">jdbc:mysql://localhost:3306</property>
     <property name="connection.username">portfolio</property>
     <property name="connection.password">portfolio</property>
-    <mapping class="com.alexanderfisher.hibernate.dto.Categories"/>
-    <mapping class="com.alexanderfisher.hibernate.dto.Projects"/>
-    <mapping class="com.alexanderfisher.hibernate.dto.Galleries"/>
-    <mapping class="com.alexanderfisher.hibernate.dto.Images"/>
+    <mapping class="com.alexanderfisher.portfolio.api.hibernate.entities.CategoriesEntity"/>
+    <mapping class="com.alexanderfisher.portfolio.api.hibernate.entities.ProjectsEntity"/>
+    <mapping class="com.alexanderfisher.portfolio.api.hibernate.entities.GalleriesEntity"/>
+    <mapping class="com.alexanderfisher.portfolio.api.hibernate.entities.ImagesEntity"/>
   </session-factory>
 </hibernate-configuration>

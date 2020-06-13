@@ -48,7 +48,7 @@
         <configuration>
           <filesets>
             <fileset>
-              <directory>src/main/java/com/alexanderfisher/models</directory>
+              <directory>src/main/java/com/alexanderfisher</directory>
             </fileset>
           </filesets>
         </configuration>
@@ -65,7 +65,7 @@
             <configuration>
               <inputSpec>${project.build.directory}/maven-shared-archive-resources/openapi.yml</inputSpec>
               <generatorName>java</generatorName>
-              <modelPackage>com.alexanderfisher.models</modelPackage>
+              <modelPackage>${openapi.generator.modelPackage}</modelPackage>
               <generateApis>false</generateApis>
               <generateModels>true</generateModels>
               <generateModelDocumentation>false</generateModelDocumentation>
