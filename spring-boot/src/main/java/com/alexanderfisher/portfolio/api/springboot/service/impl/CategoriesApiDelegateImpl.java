@@ -6,14 +6,13 @@ import com.alexanderfisher.portfolio.api.springboot.api.CategoriesApiDelegate;
 import com.alexanderfisher.portfolio.api.hibernate.entities.CategoriesEntity;
 import com.alexanderfisher.portfolio.api.models.Category;
 import com.alexanderfisher.portfolio.api.models.Project;
+import com.alexanderfisher.portfolio.api.springboot.service.EntityManagerProvider;
 import com.alexanderfisher.portfolio.api.springboot.service.EntityToModelConverter;
-import com.alexanderfisher.portfolio.api.springboot.service.SessionFactoryProvider;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -23,23 +22,20 @@ import java.util.stream.Collectors;
 @Service
 public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
 
-    private final SessionFactoryProvider sessionFactoryProvider;
+    private final EntityManagerProvider entityManagerFactoryProvider;
 
-    public CategoriesApiDelegateImpl(SessionFactoryProvider sessionFactoryProvider) {
-        this.sessionFactoryProvider = sessionFactoryProvider;
+    public CategoriesApiDelegateImpl(EntityManagerProvider entityManagerFactoryProvider) {
+        this.entityManagerFactoryProvider = entityManagerFactoryProvider;
     }
 
     @Override
     public ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(Integer categoryId) {
-        Session session = sessionFactoryProvider.getSessionFactory().openSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        EntityManager entityManager = entityManagerFactoryProvider.getEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProjectsEntity> criteriaQuery = criteriaBuilder.createQuery(ProjectsEntity.class);
         Root<ProjectsEntity> root = criteriaQuery.from(ProjectsEntity.class);
         criteriaQuery.select(root).where(criteriaBuilder.equal(root.get(ProjectsEntity_.categoriesEntity), categoryId));
-        Transaction transaction = session.beginTransaction();
-        List<ProjectsEntity> projectsEntities = session.createQuery(criteriaQuery).getResultList();
-        transaction.commit();
-        session.close();
+        List<ProjectsEntity> projectsEntities = entityManager.createQuery(criteriaQuery).getResultList();
 
         List<Project> categories = projectsEntities.stream()
             .map(EntityToModelConverter::toProject)
@@ -50,14 +46,11 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
 
     @Override
     public ResponseEntity<List<Category>> categoriesGet() {
-        Session session = sessionFactoryProvider.getSessionFactory().openSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        EntityManager entityManager = entityManagerFactoryProvider.getEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<CategoriesEntity> criteriaQuery = criteriaBuilder.createQuery(CategoriesEntity.class);
         criteriaQuery.from(CategoriesEntity.class);
-        Transaction transaction = session.beginTransaction();
-        List<CategoriesEntity> categoriesEntities = session.createQuery(criteriaQuery).getResultList();
-        transaction.commit();
-        session.close();
+        List<CategoriesEntity> categoriesEntities = entityManager.createQuery(criteriaQuery).getResultList();
 
         List<Category> categories = categoriesEntities.stream()
             .map(EntityToModelConverter::toCategory)
