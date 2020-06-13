@@ -18,6 +18,17 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>${maven.clean.plugin.version}</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>src/main/java/com/alexanderfisher/hibernate</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-tools-maven-plugin</artifactId>
         <version>${hibernate.version}</version>
@@ -26,6 +37,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.java.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.alexanderfisher</groupId>
+            <artifactId>hbm2java</artifactId>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
         <executions>
@@ -39,8 +55,9 @@
               <ejb3>true</ejb3>
               <jdk5>true</jdk5>
               <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-              <packageName>com.alexanderfisher.hibernate.dto</packageName>
+              <packageName>com.alexanderfisher.hibernate.entities</packageName>
               <templatePath>${project.basedir}/src/main/hibernate/templates</templatePath>
+              <revengStrategy>com.alexanderfisher.hbm2java.CustomReverseEngineeringStrategy</revengStrategy>
             </configuration>
           </execution>
         </executions>

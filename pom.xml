@@ -9,6 +9,7 @@
     <module>openapi</module>
     <module>models</module>
     <module>database</module>
+    <module>hbm2java</module>
     <module>hibernate</module>
     <module>spring-boot</module>
   </modules>

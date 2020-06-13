@@ -1,7 +1,7 @@
 package com.alexanderfisher.service.impl;
 
 import com.alexanderfisher.api.CategoriesApiDelegate;
-import com.alexanderfisher.hibernate.dto.Categories;
+import com.alexanderfisher.hibernate.entities.CategoriesEntity;
 import com.alexanderfisher.models.Category;
 import com.alexanderfisher.models.Project;
 import com.alexanderfisher.service.SessionFactoryProvider;
@@ -45,14 +45,14 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
     public ResponseEntity<List<Category>> categoriesGet() {
         Session session = sessionFactoryProvider.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Categories> criteriaQuery = criteriaBuilder.createQuery(Categories.class);
-        criteriaQuery.from(Categories.class);
+        CriteriaQuery<CategoriesEntity> criteriaQuery = criteriaBuilder.createQuery(CategoriesEntity.class);
+        criteriaQuery.from(CategoriesEntity.class);
         Transaction transaction = session.beginTransaction();
-        List<Categories> categoryDtos = session.createQuery(criteriaQuery).getResultList();
+        List<CategoriesEntity> categoriesEntities = session.createQuery(criteriaQuery).getResultList();
         transaction.commit();
         session.close();
 
-        List<Category> categories = categoryDtos.stream().map(dto -> {
+        List<Category> categories = categoriesEntities.stream().map(dto -> {
             Category category = new Category();
             category.setId(dto.getId());
             category.setTitle(dto.getTitle());
