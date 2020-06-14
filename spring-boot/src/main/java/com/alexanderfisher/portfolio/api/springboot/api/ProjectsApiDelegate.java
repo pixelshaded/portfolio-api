@@ -25,13 +25,13 @@ public interface ProjectsApiDelegate {
     }
 
     /**
-     * @see ProjectsApi#projectsGet
+     * @see ProjectsApi#getProjectGallery
      */
-    default ResponseEntity<List<Project>> projectsGet() {
+    default ResponseEntity<ProjectGallery> getProjectGallery(Integer projectId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"intro\" : \"intro\",  \"subcontent\" : \"subcontent\",  \"tagline\" : \"tagline\",  \"id\" : 0,  \"title\" : \"title\",  \"categoryId\" : 6,  \"slug\" : \"slug\",  \"content\" : \"content\"}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"images\" : [ {    \"filename\" : \"filename\",    \"galleryId\" : 5,    \"alt\" : \"alt\",    \"id\" : 1  }, {    \"filename\" : \"filename\",    \"galleryId\" : 5,    \"alt\" : \"alt\",    \"id\" : 1  } ],  \"gallery\" : {    \"coverId\" : 6,    \"id\" : 0,    \"title\" : \"title\",    \"slug\" : \"slug\"  }}");
                     break;
                 }
             }
@@ -41,13 +41,13 @@ public interface ProjectsApiDelegate {
     }
 
     /**
-     * @see ProjectsApi#projectsProjectIdGalleryGet
+     * @see ProjectsApi#getProjects
      */
-    default ResponseEntity<ProjectGallery> projectsProjectIdGalleryGet(Integer projectId) {
+    default ResponseEntity<List<Project>> getProjects() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"images\" : [ {    \"filename\" : \"filename\",    \"galleryId\" : 5,    \"alt\" : \"alt\",    \"id\" : 1  }, {    \"filename\" : \"filename\",    \"galleryId\" : 5,    \"alt\" : \"alt\",    \"id\" : 1  } ],  \"gallery\" : {    \"coverId\" : 6,    \"id\" : 0,    \"title\" : \"title\",    \"slug\" : \"slug\"  }}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"intro\" : \"intro\",  \"subcontent\" : \"subcontent\",  \"tagline\" : \"tagline\",  \"id\" : 0,  \"title\" : \"title\",  \"categoryId\" : 6,  \"slug\" : \"slug\",  \"content\" : \"content\"}");
                     break;
                 }
             }

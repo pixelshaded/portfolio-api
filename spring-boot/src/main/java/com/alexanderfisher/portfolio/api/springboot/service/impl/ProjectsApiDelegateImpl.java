@@ -26,7 +26,7 @@ public class ProjectsApiDelegateImpl implements ProjectsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<List<Project>> projectsGet() {
+    public ResponseEntity<List<Project>> getProjects() {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProjectsEntity> criteriaQuery = criteriaBuilder.createQuery(ProjectsEntity.class);
@@ -41,7 +41,7 @@ public class ProjectsApiDelegateImpl implements ProjectsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<ProjectGallery> projectsProjectIdGalleryGet(Integer projectId) {
+    public ResponseEntity<ProjectGallery> getProjectGallery(Integer projectId) {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         ProjectsEntity projectsEntity = entityManager.find(ProjectsEntity.class, projectId);
 

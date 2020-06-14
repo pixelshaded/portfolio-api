@@ -29,7 +29,7 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(Integer categoryId) {
+    public ResponseEntity<List<Project>> getCategoryProjects(Integer categoryId) {
         EntityManager entityManager = entityManagerFactoryProvider.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProjectsEntity> criteriaQuery = criteriaBuilder.createQuery(ProjectsEntity.class);
@@ -45,7 +45,7 @@ public class CategoriesApiDelegateImpl implements CategoriesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<List<Category>> categoriesGet() {
+    public ResponseEntity<List<Category>> getCategories() {
         EntityManager entityManager = entityManagerFactoryProvider.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<CategoriesEntity> criteriaQuery = criteriaBuilder.createQuery(CategoriesEntity.class);

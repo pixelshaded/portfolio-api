@@ -32,25 +32,25 @@ public interface CategoriesApi {
         return new CategoriesApiDelegate() {};
     }
 
-    @ApiOperation(value = "", nickname = "categoriesCategoryIdProjectsGet", notes = "Returns projects for a given category", response = Project.class, responseContainer = "List", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of projects for a given category", response = Project.class, responseContainer = "List") })
-    @RequestMapping(value = "/categories/{categoryId}/projects",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(@ApiParam(value = "",required=true) @PathVariable("categoryId") Integer categoryId) {
-        return getDelegate().categoriesCategoryIdProjectsGet(categoryId);
-    }
-
-
-    @ApiOperation(value = "", nickname = "categoriesGet", notes = "Returns all categories", response = Category.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "", nickname = "getCategories", notes = "Returns all categories", response = Category.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "A list of categories", response = Category.class, responseContainer = "List") })
     @RequestMapping(value = "/categories",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<Category>> categoriesGet() {
-        return getDelegate().categoriesGet();
+    default ResponseEntity<List<Category>> getCategories() {
+        return getDelegate().getCategories();
+    }
+
+
+    @ApiOperation(value = "", nickname = "getCategoryProjects", notes = "Returns projects for a given category", response = Project.class, responseContainer = "List", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "A list of projects for a given category", response = Project.class, responseContainer = "List") })
+    @RequestMapping(value = "/categories/{categoryId}/projects",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<List<Project>> getCategoryProjects(@ApiParam(value = "",required=true) @PathVariable("categoryId") Integer categoryId) {
+        return getDelegate().getCategoryProjects(categoryId);
     }
 
 }

@@ -25,13 +25,13 @@ public interface CategoriesApiDelegate {
     }
 
     /**
-     * @see CategoriesApi#categoriesCategoryIdProjectsGet
+     * @see CategoriesApi#getCategories
      */
-    default ResponseEntity<List<Project>> categoriesCategoryIdProjectsGet(Integer categoryId) {
+    default ResponseEntity<List<Category>> getCategories() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"intro\" : \"intro\",  \"subcontent\" : \"subcontent\",  \"tagline\" : \"tagline\",  \"id\" : 0,  \"title\" : \"title\",  \"categoryId\" : 6,  \"slug\" : \"slug\",  \"content\" : \"content\"}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"slug\" : \"slug\"}");
                     break;
                 }
             }
@@ -41,13 +41,13 @@ public interface CategoriesApiDelegate {
     }
 
     /**
-     * @see CategoriesApi#categoriesGet
+     * @see CategoriesApi#getCategoryProjects
      */
-    default ResponseEntity<List<Category>> categoriesGet() {
+    default ResponseEntity<List<Project>> getCategoryProjects(Integer categoryId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"description\" : \"description\",  \"id\" : 0,  \"title\" : \"title\",  \"slug\" : \"slug\"}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"subtitle\" : \"subtitle\",  \"intro\" : \"intro\",  \"subcontent\" : \"subcontent\",  \"tagline\" : \"tagline\",  \"id\" : 0,  \"title\" : \"title\",  \"categoryId\" : 6,  \"slug\" : \"slug\",  \"content\" : \"content\"}");
                     break;
                 }
             }

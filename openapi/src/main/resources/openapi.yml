@@ -8,6 +8,7 @@ info:
 paths:
   /categories:
     get:
+      operationId: getCategories
       description: Returns all categories
       produces:
         - application/json
@@ -20,6 +21,7 @@ paths:
               $ref: '#/definitions/Category'
   /categories/{categoryId}/projects:
     get:
+      operationId: getCategoryProjects
       description: Returns projects for a given category
       produces:
         - application/json
@@ -34,6 +36,7 @@ paths:
               $ref: '#/definitions/Project'
   /projects:
     get:
+      operationId: getProjects
       description: Returns all projects
       produces:
         - application/json
@@ -47,6 +50,7 @@ paths:
               $ref: '#/definitions/Project'
   /projects/{projectId}/gallery:
     get:
+      operationId: getProjectGallery
       description: Returns project gallery data for a project
       produces:
         - application/json

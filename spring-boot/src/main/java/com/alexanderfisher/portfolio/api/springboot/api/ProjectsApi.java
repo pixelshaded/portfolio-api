@@ -32,25 +32,25 @@ public interface ProjectsApi {
         return new ProjectsApiDelegate() {};
     }
 
-    @ApiOperation(value = "", nickname = "projectsGet", notes = "Returns all projects", response = Project.class, responseContainer = "List", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "A list of projects", response = Project.class, responseContainer = "List") })
-    @RequestMapping(value = "/projects",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<List<Project>> projectsGet() {
-        return getDelegate().projectsGet();
-    }
-
-
-    @ApiOperation(value = "", nickname = "projectsProjectIdGalleryGet", notes = "Returns project gallery data for a project", response = ProjectGallery.class, tags={  })
+    @ApiOperation(value = "", nickname = "getProjectGallery", notes = "Returns project gallery data for a project", response = ProjectGallery.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Project gallery data for a project", response = ProjectGallery.class) })
     @RequestMapping(value = "/projects/{projectId}/gallery",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<ProjectGallery> projectsProjectIdGalleryGet(@ApiParam(value = "",required=true) @PathVariable("projectId") Integer projectId) {
-        return getDelegate().projectsProjectIdGalleryGet(projectId);
+    default ResponseEntity<ProjectGallery> getProjectGallery(@ApiParam(value = "",required=true) @PathVariable("projectId") Integer projectId) {
+        return getDelegate().getProjectGallery(projectId);
+    }
+
+
+    @ApiOperation(value = "", nickname = "getProjects", notes = "Returns all projects", response = Project.class, responseContainer = "List", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "A list of projects", response = Project.class, responseContainer = "List") })
+    @RequestMapping(value = "/projects",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<List<Project>> getProjects() {
+        return getDelegate().getProjects();
     }
 
 }
