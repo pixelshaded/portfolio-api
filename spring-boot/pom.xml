@@ -58,6 +58,21 @@
         <version>${spring.boot.version}</version>
       </plugin>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.alexanderfisher.portfolio.api.springboot.invoker.OpenAPI2SpringBoot</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-remote-resources-plugin</artifactId>
         <version>${maven.remote.resources.plugin.version}</version>
         <executions>
