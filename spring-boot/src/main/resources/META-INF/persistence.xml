@@ -13,14 +13,7 @@
     <class>com.alexanderfisher.portfolio.api.hibernate.entities.ProjectsEntity</class>
     <class>com.alexanderfisher.portfolio.api.hibernate.entities.ImagesEntity</class>
     <properties>
-      <property name="javax.persistence.jdbc.url"
-                value="jdbc:mysql://localhost:3306" />
-      <property name="javax.persistence.jdbc.user"
-                value="portfolio" />
-      <property name="javax.persistence.jdbc.password"
-                value="portfolio" />
-      <property name="hibernate.show_sql"
-                value="true" />
+      <property name="hibernate.show_sql" value="true" />
     </properties>
   </persistence-unit>
 </persistence>
