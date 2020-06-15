@@ -5,9 +5,8 @@ This takes a design first, database first approach.
 
 ## Exploring the API
 
-The easiest way to explore the API is to feed the swagger UI the url to my service.
-
-
+The easiest way to explore the API is using the [swagger ui demo](https://petstore.swagger.io) and feeding this url:
+* https://env-4621960.ny-1.paas.massivegrid.net/swagger.json
 
 ## Modules
 
@@ -33,7 +32,10 @@ requests and serialize responses.
 This is a very simply docker image extending the mysql image. All it really does is drop the database dump file in to a folder.
 The rest of the configuration is handled with environment variables.
 
-Currently uses shell scripts to build, run, and publish the image. T
+Currently uses shell scripts to build, run, and publish the image. Note that I am not using this image in the cloud. I
+ran in to endless issues on start up for some reason. Developers are infamous for spending hours automating something
+that takes a few minutes to do manually, so I eventually opted for the more manual approach with jElastic's built in
+support for MySQL and manually creating tables and importing the database dump.
 
 ### hbm2java
 
@@ -68,4 +70,6 @@ of the delegate. Request routing and validation is handled for us by the code ge
 be the source of truth for this stuff. If it can properly generate server stubs for us then the spec should be good enough
 to generate clients as well. We should eat our own dogfood. If the spec is just there for documentation, it loses a lot 
 of its value and there is no guarantee it is truly machine readable for codegen which in my opinion is the whole point.
+
+This application runs in a container on MassiveGrid.
 
