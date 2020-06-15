@@ -1,0 +1,5 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+**/HomeController.java
+**/OpenAPIDocumentationConfig.java
