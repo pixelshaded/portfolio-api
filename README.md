@@ -3,6 +3,12 @@ API for alexander-fisher.com based on spring boot.
 
 This takes a design first, database first approach.
 
+## Exploring the API
+
+The easiest way to explore the API is to feed the swagger UI the url to my service.
+
+
+
 ## Modules
 
 ### openapi

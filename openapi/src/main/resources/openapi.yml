@@ -1,9 +1,11 @@
 swagger: '2.0'
 info:
   title: Portfolio API
+  description: An API exposing portfolio projects
   version: '1.0.0'
   contact:
     name: Alexander Fisher
+    url: https://www.alexander-fisher.com
     email: afisher@alexander-fisher.com
 paths:
   /categories:

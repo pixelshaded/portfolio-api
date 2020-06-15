@@ -35,6 +35,11 @@
       <version>${jackson.datatype.jsr310.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>${javax.validation.api.version}</version>
@@ -43,6 +48,11 @@
       <groupId>com.alexanderfisher</groupId>
       <artifactId>hibernate</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.7</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>

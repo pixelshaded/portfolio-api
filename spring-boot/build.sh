@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t pixelshaded/portfolio-api-spring-boot:1.0 .
+docker build -t pixelshaded/portfolio-api-spring-boot:1.1 .
