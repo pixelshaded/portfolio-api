@@ -11,7 +11,7 @@ import org.testcontainers.containers.output.WaitingConsumer;
 
 import java.util.concurrent.TimeUnit;
 
-public class ContractTesting {
+public class ContractTest {
 
     private final String MYSQL_READY_MESSAGE = "ready for connections";
     private final String DREDD_REPORT_FILE_NAME = "contract_test_report.md";
