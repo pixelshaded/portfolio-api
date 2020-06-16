@@ -69,13 +69,13 @@ parameters:
     in: path
     type: integer
     required: true
-    x-example: 2
+    x-example: 1
   ProjectId:
     name: projectId
     in: path
     type: integer
     required: true
-    x-example: 2
+    x-example: 1
 definitions:
   Category:
     type: object
