@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker push pixelshaded/portfolio-api-spring-boot:1.3
+docker push pixelshaded/portfolio-api-spring-boot:1.4
