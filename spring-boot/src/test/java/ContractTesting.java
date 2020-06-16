@@ -5,19 +5,20 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.EnvironmentVariables;
 import org.testcontainers.Testcontainers;
+import org.testcontainers.containers.Container;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.output.WaitingConsumer;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ContractTesting {
 
     private final String MYSQL_READY_MESSAGE = "ready for connections";
-    private final String DREDD_DONE_MESSAGE = "complete: Tests took";
-    private final String DREDD_FAILURE_MESSAGE = "fail:";
-    private final String DREDD_REPORT_FILE_FOLDER = "/contract_testing_results";
     private final String DREDD_REPORT_FILE_NAME = "contract_test_report.md";
+    private final String DREDD_REPORT_OUTPUT_FOLDER = "/contract_testing_results";
+    private final String DREDD_REPORT_COPY_FOLDER = "target/test-classes";
+    private final String DREDD_REPORT_OUTPUT_PATH = DREDD_REPORT_OUTPUT_FOLDER + "/" + DREDD_REPORT_FILE_NAME;
+    private final String DREDD_REPORT_COPY_PATH = DREDD_REPORT_COPY_FOLDER + "/" + DREDD_REPORT_FILE_NAME;
 
     @Rule
     public final EnvironmentVariables environmentVariables = new EnvironmentVariables();
@@ -46,31 +47,22 @@ public class ContractTesting {
             environmentVariables.set(AppConfigProviderImpl.DATABASE_PASSWORD, "portfolio");
             OpenAPI2SpringBoot.main(new String[]{});
 
-            String dreddCommand = "dredd "
-                + "--reporter markdown "
-                + "--output " + DREDD_REPORT_FILE_FOLDER + "/" + DREDD_REPORT_FILE_NAME + " "
-                + "http://host.testcontainers.internal:8080/swagger.json "
-                + "http://host.testcontainers.internal:8080"
-            ;
-
             try (GenericContainer dredd = new GenericContainer<>("apiaryio/dredd")
-                 .withCommand(dreddCommand)
+                 .withCommand("tail -f /dev/null")
             ){
                 dredd.start();
-                WaitingConsumer dreddConsumer = new WaitingConsumer();
-                dredd.followOutput(dreddConsumer);
-                AtomicReference<Boolean> contractedTestingFailed = new AtomicReference<>(false);
-                dreddConsumer.waitUntil(frame -> {
-                    String message = frame.getUtf8String();
-                    if (message.startsWith(DREDD_FAILURE_MESSAGE)) {
-                        contractedTestingFailed.set(true);
-                    }
-                    return message.contains(DREDD_DONE_MESSAGE);
-                }, 60, TimeUnit.SECONDS);
-
-                // dredd.copyFileFromContainer(DREDD_REPORT_FILE_FOLDER + "/" + DREDD_REPORT_FILE_NAME, "target/test-classes");
-
-                Assert.assertFalse("Contract testing failed", contractedTestingFailed.get());
+                Container.ExecResult result = dredd.execInContainer(
+          "dredd",
+                    "--reporter",
+                    "markdown",
+                    "--output",
+                    DREDD_REPORT_OUTPUT_PATH,
+                    "http://host.testcontainers.internal:8080/swagger.json",
+                    "http://host.testcontainers.internal:8080"
+                );
+                dredd.copyFileFromContainer(DREDD_REPORT_OUTPUT_PATH, DREDD_REPORT_COPY_PATH);
+                dredd.stop();
+                Assert.assertEquals("Contract testing failed. Look at " + DREDD_REPORT_COPY_PATH + " for details.", 0, result.getExitCode());
             }
         }
 
