@@ -51,8 +51,7 @@ public class ContractTest {
                  .withCommand("tail -f /dev/null")
             ){
                 dredd.start();
-                Container.ExecResult result = dredd.execInContainer(
-          "dredd",
+                Container.ExecResult result = dredd.execInContainer("dredd",
                     "--reporter",
                     "markdown",
                     "--output",
